@@ -1,0 +1,92 @@
+
+CREATE TABLE Vehicles (
+  LicensePlate VARCHAR(10) PRIMARY KEY,
+  Make VARCHAR(10),
+  Model VARCHAR(10),
+  Year INT,
+  Color VARCHAR(10),
+  VIN VARCHAR(20)
+);
+drop table vehicles ;
+
+CREATE TABLE Drivers (
+  LicenseNumber VARCHAR(10) PRIMARY KEY,
+  FirstName VARCHAR(20),
+  LastName VARCHAR(20),
+  Phone VARCHAR(15),
+  Address VARCHAR(50),
+  City VARCHAR(20),
+  State VARCHAR(2),
+  ZipCode VARCHAR(10)
+);
+
+
+CREATE TABLE Trips (
+  VehicleID INT,
+  DriverID INT,
+  StartDate DATE,
+  EndDate DATE,
+  StartLocation VARCHAR(20),
+  EndLocation VARCHAR(20),
+  Distance INT
+);
+
+
+CREATE TABLE Maintenance (
+  VehicleID INT,
+  MaintenanceDate DATE,
+  Description VARCHAR(50),
+  Cost DECIMAL(10, 2)
+);
+
+INSERT INTO Vehicles (LicensePlate, Make, Model, Year, Color, VIN)
+VALUES ('ABC123', 'Toyota', 'Corolla', 2020, 'White', '1HGCM82633A004352'),
+       ('XYZ789', 'Ford', 'Fusion', 2018, 'Blue', '2HGCM82633A004353');
+      
+      
+      
+INSERT INTO Drivers (LicenseNumber, FirstName, LastName, Phone, Address, City, State, ZipCode)
+VALUES ('D1234567', 'Michael', 'Smith', '1234567890', '123 Main St', 'Anytown', 'CA', '12345'),
+       ('D7654321', 'Sarah', 'Connor', '0987654321', '456 Elm St', 'Otherville', 'NY', '54321');
+      
+      
+
+INSERT INTO Trips (VehicleID, DriverID, StartDate, EndDate, StartLocation, EndLocation, Distance)
+VALUES (1, 1, '2024-07-01', '2024-07-02', 'Los Angeles', 'San Francisco', 380),
+       (2, 2, '2024-07-03', '2024-07-04', 'New York', 'Washington D.C.', 225);
+      
+      
+INSERT INTO Maintenance (VehicleID, MaintenanceDate, Description, Cost)
+VALUES (1, '2024-06-15', 'Oil change', 50.00),
+       (2, '2024-06-20', 'Tire replacement', 300.00);
+      
+      
+      UPDATE Maintenance
+SET Cost = 350.00
+WHERE VehicleID = 2 AND MaintenanceDate = '2024-06-20';
+
+
+DELETE FROM Vehicles
+WHERE  LicensePlate = 'ABC123';
+
+
+INSERT INTO Trips (VehicleID, DriverID, StartDate, EndDate, StartLocation, EndLocation, Distance)
+VALUES (2, 1, '2024-07-05', '2024-07-06', 'Boston', 'Philadelphia', 300);
+
+
+UPDATE Vehicles
+SET Color = 'Red'
+WHERE LicensePlate = 'XYZ789';
+
+
+INSERT INTO Maintenance (VehicleID, MaintenanceDate, Description, Cost)
+VALUES (1, '2024-07-10', 'Brake inspection', 100.00);
+
+
+UPDATE Drivers
+SET Phone = '2223334444'
+WHERE LicenseNumber = 'D1234567';
+
+
+DELETE FROM Trips
+WHERE VehicleID = 2;
